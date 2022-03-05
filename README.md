@@ -1,3 +1,23 @@
+**CLONE TO GET STARTED**
+----
+Clone this repository
+Run the following commands
+
+`composer install`
+
+This is to install all the dependecies needed for the project to run
+
+`php artisan migrate`
+
+This is to migrate the db
+
+`php artisan serve`
+
+To serve the application
+
+
+
+
 **GET EXTERNAL BOOK**
 ----
   Returns json data about an external book.
