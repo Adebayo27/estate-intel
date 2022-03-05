@@ -23,10 +23,10 @@ class BooksController extends BaseController
                 }
                 
             }
-            $books = $books->get();
+            $books = $books->get()->makeVisible(['id']);
 
         }else{
-            $books = Books::all();
+            $books = Books::all()->makeVisible(['id']);
         }
         
         return $this->sendResponse($books);
@@ -80,7 +80,7 @@ class BooksController extends BaseController
             $update = $old_book->update($input);
             if ($update) {
                 $books = [
-                    'book' => Books::find($id)
+                    'book' => Books::find($id)->makeVisible(['id'])
                 ];
 
                 $message = 'The book ' . $old_book->name . ' was updated successfully';
@@ -109,7 +109,7 @@ class BooksController extends BaseController
     public function getSingleBook(Request $request, $id)
     {
         try {
-            $book = Books::find($id);
+            $book = Books::find($id)->makeVisible(['id']);
             return $this->sendResponse($book, null, 200);
         } catch (\Throwable $th) {
             return $this->sendError('An Error Occured.');
