@@ -19,8 +19,8 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** ```
-    {
+    **Content:** 
+    ```{
         "status_code":200,
         "status":"success",
         "data":[
@@ -37,13 +37,12 @@
             },
         ]
      }
-        ```
+     ```
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** ```
-    {
+    **Content:** ```{
         "status_code": 404,
         "status": "not found",
         "data": []
