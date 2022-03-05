@@ -33,16 +33,15 @@
         "publisher":"Bantam Books",
         "country":"United States",
         "release_date":"1996-08-01"
-        },
-
-        ]
-    }```
+        },]}
+        ```
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{
+    **Content:** ```{
         "status_code": 404,
         "status": "not found",
         "data": []
-    }`
+    }
+    ```
