@@ -1,64 +1,446 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+**CLONE TO GET STARTED**
+----
+Clone this repository
+Run the following commands
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+`composer install`
 
-## About Laravel
+This is to install all the dependecies needed for the project to run
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+`php artisan migrate`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This is to migrate the db
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`php artisan serve`
 
-## Learning Laravel
+To serve the application
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**GET EXTERNAL BOOK**
+----
+  Returns json data about an external book.
 
-### Premium Partners
+* **URL**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+  /api/external-books?name=:nameOfABook
 
-## Contributing
+* **Method:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  `GET`
+  
+*  **URL Params**
 
-## Code of Conduct
+   **Required:**
+ 
+   `name=[string]`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* **Success Response:**
 
-## Security Vulnerabilities
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "status_code":200,
+        "status":"success",
+        "data":[
+            {
+            "name":"A Game of Thrones",
+            "isbn":"978-0553103540",
+            "authors":[
+                "George R. R. Martin"
+            ],
+            "number_of_pages":694,
+            "publisher":"Bantam Books",
+            "country":"United States",
+            "release_date":"1996-08-01"
+            },
+        ]
+     }
+     ```
+ 
+* **Error Response:**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+   
 
-## License
+**CREATE BOOK**
+----
+  Returns json data about a single book created.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* **URL**
+
+  /api/v1/books
+
+* **Method:**
+
+  `POST`
+  
+*  **SAMPLE REQUEST BODY**
+
+   **Required:**
+ 
+   ```
+    name=[string]
+    isbn=[string]
+    authors=[string]
+    country=[string]
+    number_of_pages=[integer]
+    publisher=[string]
+    release_date=[date]
+   
+   ```
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** 
+    ```
+    {
+        "status_code":201,
+        "status":"success",
+        "data":{
+            "book":{
+            "name":"My First Book",
+            "isbn":"123-3213243567",
+            "authors":[
+            "John Doe"
+            ],
+            "number_of_pages":350,
+            "publisher":"Acme Books",
+            "country":"United States",
+            "release_date":"2019-08-01"
+            }
+        }
+    }
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+    
+**GET ALL BOOKS**
+----
+  Returns json data about all books.
+
+* **URL**
+
+  /api/v1/books
+
+* **Method:**
+
+  `GET`
+  
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    {
+        "status_code":200,
+        "status":"success",
+        "data":[
+            {
+            "id":1,
+            "name":"A Game of Thrones",
+            "isbn":"978-0553103540",
+            "authors":[
+                "George R. R. Martin"
+            ],
+            "number_of_pages":694,
+            "publisher":"Bantam Books",
+            "country":"United States",
+            "release_date":"1996-08-01"
+            },
+            {
+            "id":2,
+            "name":"A Clash of Kings",
+            "authors":[
+                "George R. R. Martin"
+            ],
+            "number_of_pages":768,
+            "publisher":"Bantam Books",
+            "country":"United States",
+            "release_date":"1999-02-02"
+            }
+          ]
+        }
+
+     ```
+     
+     If no results were found
+     
+     ```
+        {
+            "status_code":200,
+            "status":"success",
+            "data":[]
+        }
+
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+    
+**UPDATE BOOK**
+----
+  Returns json data about a single book updated.
+
+* **URL**
+
+  /api/v1/books/:id
+  
+  where :id is a placeholder variable for an integer (for example 1)
+
+* **Method:**
+
+  `POST`
+  
+*  **SAMPLE REQUEST BODY**
+
+   ```
+    name=[string]
+    isbn=[string]
+    authors=[string]
+    country=[string]
+    number_of_pages=[integer]
+    publisher=[string]
+    release_date=[date]
+   
+   ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+        {
+            "status_code":200,
+            "status":"success",
+            "message":"The book My First Book was updated successfully",
+            "data":{
+            "id":1,
+            "name":"My First Updated Book",
+            "isbn":"123-3213243567",
+            "authors":[
+            "John Doe"
+            ],
+            "number_of_pages":350,
+            "publisher":"Acme Books Publishing",
+            "country":"United States",
+            "release_date":"2019-01-01"
+            }
+        }
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+    
+**DELETE BOOK**
+----
+  Returns json data about a single book deleted.
+
+* **URL**
+
+  /api/v1/books/:id
+  __________________
+  /api/v1/books/:id/delete
+
+
+where :id is a placeholder variable for an integer (for example 1)
+* **Method:**
+
+  `DELETE`
+  `POST`
+  
+  For the above endpoints respectively
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+        {
+            "status_code":204,
+            "status":"success",
+            "message":"The book ‘My first book’ was deleted successfully",
+            "data":[]
+        }
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+    
+**GET SINGLE BOOK**
+----
+  Returns json data about a single book.
+
+* **URL**
+
+  /api/v1/books/:id
+  
+  where :id is a placeholder variable for an integer (for example 1)
+
+* **Method:**
+
+  `GET`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+        {
+            "status_code":200,
+            "status":"success",
+            "data":{
+                "id":1,
+                "name":"My First Book",
+                "isbn":"123-3213243567",
+                "authors":[
+                    "John Doe"
+                ],
+                "number_of_pages":350,
+                "publisher":"Acme Books Publishing",
+                "country":"United States",
+                "release_date":"2019-01-01"
+            }
+        }
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+    
+**GET BOOKS FILTER**
+----
+  Returns json data about books with filter.
+
+* **URL**
+
+  /api/v1/books?
+  
+  *  **URL Params**
+
+   **Required:**
+ 
+   ```
+    name=[string]
+    country=[string]
+    publisher=[string]
+    release_date=[year(integer)]
+   ```
+   
+ 
+
+* **Method:**
+
+  `GET`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+        {
+            "status_code":200,
+            "status":"success",
+            "data": [
+                {
+                    "id":1,
+                    "name":"My First Book",
+                    "isbn":"123-3213243567",
+                    "authors":[
+                        "John Doe"
+                    ],
+                    "number_of_pages":350,
+                    "publisher":"Acme Books Publishing",
+                    "country":"United States",
+                    "release_date":"2019-01-01"
+                }
+            ]
+        }
+     ```
+     
+     If no results were found
+     
+     ```
+        {
+            "status_code":200,
+            "status":"success",
+            "data":[]
+        }
+
+     ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** 
+    ```
+    {
+        "status_code": 404,
+        "status": "not found",
+        "data": []
+    }
+    ```
+    
+ 
