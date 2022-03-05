@@ -26,6 +26,6 @@ Route::prefix('v1')->group(function () {
     Route::post('/books/{id}', [BooksController::class, 'update']);
     Route::delete('/books/{id}', [BooksController::class, 'delete']);
     Route::post('/books/{id}/delete', [BooksController::class, 'delete']);
-    Route::get('/external-books', [BooksController::class, 'externalBooks']);
-    
+   
 });
+Route::get('/external-books', [BooksController::class, 'externalBooks']);
