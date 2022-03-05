@@ -19,7 +19,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{
+    **Content:** ```{
         "status_code":200,
         "status":"success",
         "data":[
@@ -36,7 +36,7 @@
         },
 
         ]
-    }`
+    }```
  
 * **Error Response:**
 
