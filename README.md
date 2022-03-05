@@ -272,7 +272,7 @@ where :id is a placeholder variable for an integer (for example 1)
   `DELETE`
   `POST`
   
-  Foe the above endpoints respectively
+  For the above endpoints respectively
 
 * **Success Response:**
 
