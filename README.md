@@ -262,6 +262,7 @@
 * **URL**
 
   /api/v1/books/:id
+  __________________
   /api/v1/books/:id/delete
 
 
